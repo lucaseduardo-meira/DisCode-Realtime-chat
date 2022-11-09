@@ -41,7 +41,14 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    io.emit("message", formatMessage(bot, "A user has left the chat"));
+    const user = userLeave(socket.id);
+
+    if (user) {
+      io.to(user.room).emit(
+        "message",
+        formatMessage(bot, `${user.username} has left the chat`)
+      );
+    }
   });
 });
 
