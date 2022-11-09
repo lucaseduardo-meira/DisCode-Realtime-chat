@@ -3,6 +3,12 @@ const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
 const formatMessage = require("./utils/messages");
+const {
+  userJoin,
+  getCurrentUser,
+  userLeave,
+  getRoomUsers,
+} = require("./utils/users");
 
 const app = express();
 const server = http.createServer(app);
@@ -13,19 +19,29 @@ app.use(express.static(path.join(__dirname, "public")));
 const bot = "DisCode Bot";
 
 io.on("connection", (socket) => {
-  socket.emit("message", formatMessage(bot, "Welcome to DisCode"));
+  socket.on("joinRoom", ({ username, room }) => {
+    const user = userJoin(socket.id, username, room);
 
-  socket.broadcast.emit(
-    "message",
-    formatMessage(bot, "A user has joined the chat")
-  );
+    socket.join(user.room);
 
-  socket.on("disconnect", () => {
-    io.emit("message", formatMessage(bot, "A user has left the chat"));
+    socket.emit("message", formatMessage(bot, "Welcome to DisCode"));
+
+    socket.broadcast
+      .to(user.room)
+      .emit(
+        "message",
+        formatMessage(bot, `${user.username} has joined the room`)
+      );
   });
 
   socket.on("chatMessage", (msg) => {
-    io.emit("message", formatMessage("user", msg));
+    const user = getCurrentUser(socket.id);
+
+    io.to(user.room).emit("message", formatMessage(user.username, msg));
+  });
+
+  socket.on("disconnect", () => {
+    io.emit("message", formatMessage(bot, "A user has left the chat"));
   });
 });
 
