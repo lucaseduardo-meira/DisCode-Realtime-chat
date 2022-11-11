@@ -26,17 +26,25 @@ ul {
   list-style: none;
 }
 
-a {
+a{
   text-decoration: none;
 }
 
+a:hover{
+  text-decoration: underline;
+}
+
 .btn {
+  color: white;
+  font-weight: bold;
+  background-color: #082c6c ;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
   cursor: pointer;
   padding: 5px 15px;
-  background: var(--dark-color-a);
-  color: var(--light-color);
-  border: 0;
-  font-size: 17px;
+  font-size: 23px;
+  border-radius: 20px;
 }
 
 /* Chat Page */
@@ -184,11 +192,13 @@ a {
 }
 
 .register {
-  color: #1bbeff ;
-  text-decoration:none;
-  font-size: 20px;
+  background: var(--dark-color-a);
+  color: var(--light-color);
   text-align: center;
-  margin-top: 20px;
+}
+
+h4 {
+  margin-top: 25px;
 }
 
 @media (max-width: 700px) {
