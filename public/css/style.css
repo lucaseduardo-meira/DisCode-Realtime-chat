@@ -27,6 +27,8 @@ ul {
 }
 
 a{
+  width: auto;
+  height: auto;
   text-decoration: none;
 }
 
@@ -192,14 +194,13 @@ a:hover{
 }
 
 .register {
-  background: var(--dark-color-a);
+  display: inline-block;
+  margin-top: 25px;
+  background: var(--dark-color-b);
   color: var(--light-color);
   text-align: center;
 }
 
-h4 {
-  margin-top: 25px;
-}
 
 @media (max-width: 700px) {
   .chat-main {
