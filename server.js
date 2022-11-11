@@ -61,6 +61,8 @@ io.on("connection", (socket) => {
   });
 });
 
+app.use("/", require("./router/routes"));
+
 const PORT = 3000 || process.env.PORT;
 
 server.listen(PORT, () =>
