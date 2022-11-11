@@ -183,6 +183,14 @@ a {
   width: 100%;
 }
 
+.register {
+  color: #1bbeff ;
+  text-decoration:none;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
 @media (max-width: 700px) {
   .chat-main {
     display: block;
