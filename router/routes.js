@@ -13,7 +13,7 @@ route.post("/", async (req, res) => {
 
   if (!user) return res.status(400).send({ error: "Usuário não encontrado" });
 
-  res.json(user);
+  res.redirect(`/chat?username=${user.username}&room=JavaScript`);
 });
 
 route.get("/register", (req, res) => {
@@ -31,7 +31,11 @@ route.post("/register", async (req, res) => {
   }
   const user = await User.create(req.body);
 
-  res.json({ Message: "Usuario criado", User: user });
+  res.redirect(`/chat?username=${user.username}&room=JavaScript`);
+});
+
+route.get("/chat", (req, res) => {
+  res.sendFile(path.resolve("public/chat.html"));
 });
 
 module.exports = route;
