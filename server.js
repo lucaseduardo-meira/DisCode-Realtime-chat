@@ -1,4 +1,5 @@
 const path = require("path");
+const bodyParser = require("body-parser");
 const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
@@ -15,6 +16,7 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const bot = "DisCode Bot";
 
