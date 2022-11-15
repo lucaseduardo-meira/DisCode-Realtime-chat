@@ -15,6 +15,13 @@ route.post("/", async (req, res) => {
 
   if (!user) return res.status(400).send({ error: "Usuário não encontrado" });
 
+  const hash = user.password;
+
+  if (!(await bcrypt.compare(password, hash))) {
+    return res.json({ Erro: "Senha incorreta" });
+  }
+
+  req.session.login = user.username;
   res.redirect(`/chat?username=${user.username}&room=JavaScript`);
 });
 
