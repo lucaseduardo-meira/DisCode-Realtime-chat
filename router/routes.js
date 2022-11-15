@@ -4,6 +4,7 @@ const route = express.Router();
 const User = require("../database/models/user");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
+const { query } = require("express");
 
 route.get("/", (req, res) => {
   res.sendFile("public/index.html");
@@ -30,6 +31,7 @@ route.get("/register", (req, res) => {
 });
 route.post("/register", async (req, res) => {
   const { email, username } = req.body;
+  var { password } = req.body;
 
   if (await User.findOne({ email })) {
     return res.status(400).json({ Erro: "Email já cadastrado" });
@@ -38,13 +40,20 @@ route.post("/register", async (req, res) => {
   if (await User.findOne({ username })) {
     return res.status(400).json({ Erro: "Username já cadastrado" });
   }
-  const user = await User.create(req.body);
 
+  password = await bcrypt.hash(password, 10);
+  const user = await User.create({ email, username, password });
+
+  req.session.login = user.username;
   res.redirect(`/chat?username=${user.username}&room=JavaScript`);
 });
 
 route.get("/chat", (req, res) => {
-  res.sendFile(path.resolve("public/chat.html"));
+  const { username } = req.query;
+  if (req.session.login === username) {
+    return res.sendFile(path.resolve("public/chat.html"));
+  }
+  res.json({ Erro: "Usuario não logado" });
 });
 
 module.exports = route;
