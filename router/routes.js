@@ -72,7 +72,6 @@ route.get("/chat", (req, res) => {
 });
 
 route.get("/logout", async (req, res) => {
-  console.log("logout");
   req.session.login = null;
   res.redirect("/");
 });
