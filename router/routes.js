@@ -74,7 +74,7 @@ route.get("/chat", (req, res) => {
 route.post("/logout", async (req, res) => {
   console.log("logout");
   req.session.login = null;
-  res.sendStatus(200);
+  res.sendStatus(200).send("OK");
 });
 
 module.exports = route;

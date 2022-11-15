@@ -18,11 +18,13 @@
   },
   "homepage": "https://github.com/lucaseduardo-meira/DisCode-Realtime-chat#readme",
   "dependencies": {
+    "ajax": "^0.0.4",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "jquery": "^3.6.1",
     "moment": "^2.29.4",
     "mongoose": "^6.7.2",
     "socket.io": "^4.5.3"
