@@ -63,7 +63,7 @@ route.get("/chat", (req, res) => {
 
   const { username, room } = req.query;
   if (req.session.login === username) {
-    if (!rooms.include(room)) {
+    if (!rooms.includes(room)) {
       return res.json({ Error: "Room Not Found" });
     }
     return res.sendFile(path.resolve("public/chat.html"));
