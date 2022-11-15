@@ -71,4 +71,10 @@ route.get("/chat", (req, res) => {
   res.json({ Error: "User not logged" });
 });
 
+route.post("/logout", async (req, res) => {
+  console.log("logout");
+  req.session.login = null;
+  res.sendStatus(200);
+});
+
 module.exports = route;
