@@ -14,12 +14,12 @@ route.post("/", async (req, res) => {
 
   const user = await User.findOne({ email });
 
-  if (!user) return res.status(400).send({ error: "Usuário não encontrado" });
+  if (!user) return res.status(400).send({ error: "Usuário not found" });
 
   const hash = user.password;
 
   if (!(await bcrypt.compare(password, hash))) {
-    return res.json({ Erro: "Senha incorreta" });
+    return res.json({ Erro: "Wrong password" });
   }
 
   req.session.login = user.username;
@@ -34,11 +34,11 @@ route.post("/register", async (req, res) => {
   var { password } = req.body;
 
   if (await User.findOne({ email })) {
-    return res.status(400).json({ Erro: "Email já cadastrado" });
+    return res.status(400).json({ Erro: "Email already registered" });
   }
 
   if (await User.findOne({ username })) {
-    return res.status(400).json({ Erro: "Username já cadastrado" });
+    return res.status(400).json({ Erro: "Username already registered" });
   }
 
   password = await bcrypt.hash(password, 10);
@@ -49,11 +49,26 @@ route.post("/register", async (req, res) => {
 });
 
 route.get("/chat", (req, res) => {
-  const { username } = req.query;
+  const rooms = [
+    "JavaScript",
+    "React",
+    "Python",
+    "PHP",
+    "C#",
+    "Ruby",
+    "Java",
+    "Front-End",
+    "Back-End",
+  ];
+
+  const { username, room } = req.query;
   if (req.session.login === username) {
+    if (!rooms.include(room)) {
+      return res.json({ Error: "Room Not Found" });
+    }
     return res.sendFile(path.resolve("public/chat.html"));
   }
-  res.json({ Erro: "Usuario não logado" });
+  res.json({ Error: "User not logged" });
 });
 
 module.exports = route;
