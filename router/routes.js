@@ -2,6 +2,8 @@ const path = require("path");
 const express = require("express");
 const route = express.Router();
 const User = require("../database/models/user");
+const session = require("express-session");
+const bcrypt = require("bcrypt");
 
 route.get("/", (req, res) => {
   res.sendFile("public/index.html");
