@@ -10,7 +10,7 @@ route.get("/", (req, res) => {
   res.sendFile("public/index.html");
 });
 route.post("/", async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, room } = req.body;
 
   const user = await User.findOne({ email });
 
@@ -23,7 +23,7 @@ route.post("/", async (req, res) => {
   }
 
   req.session.login = user.username;
-  res.redirect(`/chat?username=${user.username}&room=JavaScript`);
+  res.redirect(`/chat?username=${user.username}&room=${room}`);
 });
 
 route.get("/register", (req, res) => {
