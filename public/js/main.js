@@ -52,3 +52,16 @@ function outputUsers(users) {
   ${users.map((user) => `<li>${user.username}</li>`).join("")}
   `;
 }
+
+if (window.location.pathname == "/chat") {
+  $onlogout = $("#logout");
+  $onlogout.click(function () {
+    var request = {
+      url: "http://localhost:3000/logout",
+      method: "POST",
+    };
+    $.ajax(request).done(function (response) {
+      location.reload();
+    });
+  });
+}
