@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
+const session = require("express-session");
 const formatMessage = require("./utils/messages");
 const {
   userJoin,
@@ -18,6 +19,7 @@ const io = socketio(server);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(session({ secret: "uiodhfiuabfusuoga53da143108fboiad" }));
 
 const bot = "DisCode Bot";
 
