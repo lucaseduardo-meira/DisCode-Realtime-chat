@@ -42,7 +42,6 @@ a:hover{
   background-color: #082c6c ;
   font-size: 20px;
   text-align: center;
-  margin-top: 20px;
   cursor: pointer;
   padding: 5px 15px;
   font-size: 23px;
@@ -135,6 +134,7 @@ a:hover{
 }
 
 .chat-form-container input[type="text"] {
+  margin-right: 30px;
   font-size: 16px;
   padding: 5px;
   height: 40px;
@@ -146,6 +146,10 @@ a:hover{
   padding: 5px;
   height: 40px;
   flex: 1;
+}
+
+.chat-form btn{
+  margin-top: 0px;
 }
 
 /* Join Page */
