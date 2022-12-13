@@ -70,8 +70,10 @@ io.on("connection", (socket) => {
 
 app.use("/", require("./router/routes"));
 
-const PORT = 3000 || process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
-server.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
-);
+connectDB().then(() => {
+  server.listen(PORT, () => {
+    console.log(`Server running on ${PORT}`);
+  });
+});
