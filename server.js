@@ -1,3 +1,4 @@
+require("dotenv").config();
 const path = require("path");
 const bodyParser = require("body-parser");
 const http = require("http");
@@ -5,6 +6,7 @@ const express = require("express");
 const socketio = require("socket.io");
 const session = require("express-session");
 const formatMessage = require("./utils/messages");
+const { connectDB } = require("./database/config/index");
 const {
   userJoin,
   getCurrentUser,
