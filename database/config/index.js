@@ -1,6 +1,16 @@
 const mongoose = require("mongoose");
-require("dotenv/config");
 
-mongoose.connect("mongodb://localhost/DisCode");
+mongo_uri = process.env.MONGO_URI || "mongodb://localhost/DisCode";
 
-module.exports = mongoose;
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(mongo_uri);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
+
+mongoose.Promise = global.Promise;
+
+module.exports = { mongoose, connectDB };
