@@ -180,12 +180,17 @@ a:hover{
   margin-bottom: 20px;
 }
 
+
 .join-main label {
   display: block;
   margin-bottom: 5px;
 }
 
 .join-main input[type="text"] {
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0px 10px 30px #00000056;
   font-size: 16px;
   padding: 5px;
   height: 40px;
@@ -193,6 +198,10 @@ a:hover{
 }
 
 .join-main input[type="password"] {
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0px 10px 30px #00000056;
   font-size: 16px;
   padding: 5px;
   height: 40px;
@@ -200,6 +209,9 @@ a:hover{
 }
 
 .join-main select {
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
   font-size: 16px;
   padding: 5px;
   height: 40px;
@@ -207,8 +219,23 @@ a:hover{
 }
 
 .join-main .btn {
-  margin-top: 20px;
-  width: 100%;
+   width: 100%;
+   margin-top: 20px;
+   padding: 10px 0px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  color: #ffffff;
+  background-color: #082c6c;
+  border:none;
+  cursor: pointer;
+  box-shadow: 0px 10px 30px #00000056;
+}
+
+.join-main .btn:hover {
+  background-color: #053b99;
+  box-shadow: 0px 10px 40px -12px #0044ff52;
+  transition: 0.3s all;
 }
 
 .register {
