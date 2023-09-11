@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://kit.fontawesome.com/4b7fb60d7a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>DisCode Chat</title>
+</head>
+
+<body>
+    <div class="join-container">
+        <header class="join-header">
+            <h1><i class="fa-solid fa-comments"></i> DisCode</h1>
+        </header>
+        <main class="join-main">
+            <h1 style="text-align: center; margin-bottom:20px;">Login</h1>
+            <form method="post">
+                <div class="error"><i class="fa-solid fa-triangle-exclamation"></i>
+                    <h2>Wrong credetials</h2>
+                </div>
+                <div class="form-control">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" placeholder="Enter Email..." required />
+                </div>
+                <div class="form-control">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="Enter password..." required />
+                </div>
+                <div class="form-control">
+                    <label for="room">Room</label>
+                    <select name="room" id="room">
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="React">React</option>
+                        <option value="Python">Python</option>
+                        <option value="PHP">PHP</option>
+                        <option value="C#">C#</option>
+                        <option value="Ruby">Ruby</option>
+                        <option value="Java">Java</option>
+                        <option value="Front-End">Front-End</option>
+                        <option value="Back-End">Back-End</option>
+                    </select>
+                </div>
+                <button class="btn">Login</button>
+                <br>
+                <div style="text-align: center;">
+                    <a href="/register" class="register">
+                        Don't have an account? Sign up
+                    </a>
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+
+</html>

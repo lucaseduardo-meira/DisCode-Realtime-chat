@@ -232,6 +232,13 @@ a:hover{
   box-shadow: 0px 10px 30px #00000056;
 }
 
+.error {
+  background: rgba(255, 0, 0, 0.342);
+  color: #fff;
+  padding: 5px;
+  margin: 5px;
+}
+
 .join-main .btn:hover {
   background-color: #0341ad;
   box-shadow: 0px 10px 40px -12px #0044ff52;
