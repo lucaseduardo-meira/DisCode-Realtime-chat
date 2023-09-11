@@ -14,12 +14,13 @@ route.post("/", async (req, res) => {
 
   const user = await User.findOne({ email });
 
-  if (!user) return res.status(400).send({ error: "Usuário not found" });
+  if (!user) return res.sendFile("public/login_erro.html");
 
   const hash = user.password;
 
   if (!(await bcrypt.compare(password, hash))) {
-    return res.json({ Erro: "Wrong password" });
+    // return res.json({ Erro: "Wrong password" });
+    return res.sendFile("public/index.html");
   }
 
   req.session.login = user.username;
