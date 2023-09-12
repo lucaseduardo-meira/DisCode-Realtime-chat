@@ -27,18 +27,24 @@ route.post("/", async (req, res) => {
 });
 
 route.get("/register", (req, res) => {
-  res.sendFile(path.resolve("public/register.html"));
+  res.render("register");
 });
 route.post("/register", async (req, res) => {
   const { email, username } = req.body;
   var { password } = req.body;
 
+  const valid_email = /\S+@\S+\.\S+/.test(email);
+
+  if (!valid_email) {
+    return res.render("register_erro", { erro: "Wrong Email format" });
+  }
+
   if (await User.findOne({ email })) {
-    return res.status(400).json({ Erro: "Email already registered" });
+    return res.render("register_erro", { erro: "Email already registered" });
   }
 
   if (await User.findOne({ username })) {
-    return res.status(400).json({ Erro: "Username already registered" });
+    return res.render("register_erro", { erro: "User already registered" });
   }
 
   password = await bcrypt.hash(password, 10);
