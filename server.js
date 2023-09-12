@@ -21,6 +21,7 @@ const io = socketio(server);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(session({ secret: "uiodhfiuabfusuoga53da143108fboiad" }));
+app.set("view engine", "ejs");
 
 const bot = "DisCode Bot";
 
@@ -68,7 +69,7 @@ io.on("connection", (socket) => {
 });
 
 app.use("/", require("./router/routes"));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.resolve(__dirname, "public")));
 
 const PORT = process.env.PORT || 3000;
 
