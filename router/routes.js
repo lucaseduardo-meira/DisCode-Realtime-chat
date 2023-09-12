@@ -7,20 +7,21 @@ const bcrypt = require("bcrypt");
 const { query } = require("express");
 
 route.get("/", (req, res) => {
-  res.sendFile("public/index.html");
+  res.sendFile("public/index.html", { root: "." });
 });
 route.post("/", async (req, res) => {
   const { email, password, room } = req.body;
 
   const user = await User.findOne({ email });
 
-  if (!user) return res.sendFile("public/login_erro.html");
+  if (!user)
+    return res.status(500).sendFile("public/login_erro.html", { root: "." });
 
   const hash = user.password;
 
   if (!(await bcrypt.compare(password, hash))) {
-    // return res.json({ Erro: "Wrong password" });
-    return res.sendFile("public/index.html");
+    return res.status(500).sendFile("public/login_erro.html", { root: "." });
+    // return res.sendFile("public/index.html");
   }
 
   req.session.login = user.username;
