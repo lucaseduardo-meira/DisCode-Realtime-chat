@@ -7,21 +7,19 @@ const bcrypt = require("bcrypt");
 const { query } = require("express");
 
 route.get("/", (req, res) => {
-  res.sendFile("public/index.html", { root: "." });
+  res.render("index");
 });
 route.post("/", async (req, res) => {
   const { email, password, room } = req.body;
 
   const user = await User.findOne({ email });
 
-  if (!user)
-    return res.status(500).sendFile("public/login_erro.html", { root: "." });
+  if (!user) return res.render("login_erro", { erro: "User not found" });
 
   const hash = user.password;
 
   if (!(await bcrypt.compare(password, hash))) {
-    return res.status(500).sendFile("public/login_erro.html", { root: "." });
-    // return res.sendFile("public/index.html");
+    return res.render("login_erro", { erro: "Wrong password" });
   }
 
   req.session.login = user.username;
@@ -68,7 +66,7 @@ route.get("/chat", (req, res) => {
     if (!rooms.includes(room)) {
       return res.json({ Error: "Room Not Found" });
     }
-    return res.sendFile(path.resolve("public/chat.html"));
+    return res.render("chat");
   }
   res.json({ Error: "User not logged" });
 });
