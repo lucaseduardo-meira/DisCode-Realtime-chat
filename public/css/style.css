@@ -37,6 +37,7 @@ a:hover{
 }
 
 .btn {
+  border: none;
   color: white;
   font-weight: bold;
   background-color: #082c6c ;
@@ -46,6 +47,13 @@ a:hover{
   padding: 5px 15px;
   font-size: 23px;
   border-radius: 20px;
+}
+
+.btn:hover{
+    background-color: #0341ad;
+  box-shadow: 0px 8px 30px -8px #0044ff52;
+  transition: 0.3s all;
+
 }
 
 /* Chat Page */
